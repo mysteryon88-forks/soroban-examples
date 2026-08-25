@@ -2,7 +2,7 @@
 
 Soroban smart contracts that verify Groth16 zero-knowledge proofs over BLS12-381 and BN254.
 
-This example demonstrates a curve-based layout for Groth16 verification on Stellar Soroban. Each contract accepts a verification key during initialization and can update it later via an admin-gated setter, while each proving toolchain stays isolated as its own fixture set under contract-specific integration tests.
+This example demonstrates a curve-based layout for stateless Groth16 verification on Stellar Soroban. Each proving toolchain stays isolated as its own fixture set under contract-specific integration tests.
 
 This example was presented at the [Stellar Developer Meeting - 12/19/2024](https://www.youtube.com/watch?v=51SitOUZySk&list=PLmr3tp_7-7Gg5IAsJ0VlgfMoh-aTmbQmh&index=4)
 
@@ -28,9 +28,11 @@ Each fixture directory contains the proving artifacts consumed by integration te
 
 Both curve-specific contracts expose the same shape:
 
-- `__constructor(admin, verification_key)` stores the initial admin and verification key
-- `set_verification_key(verification_key)` updates the stored verification key after admin auth
-- `verify_proof(proof, public_inputs)` verifies canonical big-endian `BytesN<32>` field elements against the stored verification key and rejects values outside the scalar field
+- `verify_proof(verification_key, proof, public_inputs)` verifies a proof using the supplied verification key
+- BLS12-381 public inputs use `Vec<Bls12381Fr>`
+- BN254 public inputs use `Vec<Bn254Fr>`
+
+Callers that start from raw integers should enforce canonical encoding before constructing typed field elements. The fixture parsers demonstrate this boundary check.
 
 The BLS12-381 contract is exercised with Circom, Gnark, and Arkworks fixtures. The BN254 contract is exercised with Gnark fixtures.
 

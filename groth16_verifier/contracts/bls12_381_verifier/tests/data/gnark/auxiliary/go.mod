@@ -3,8 +3,8 @@ module gnark_example
 go 1.25.7
 
 require (
-	github.com/consensys/gnark v0.15.0
-	github.com/consensys/gnark-crypto v0.20.1
+	github.com/consensys/gnark v0.16.3
+	github.com/consensys/gnark-crypto v0.21.0
 	github.com/mysteryon88/gnark-to-snarkjs v1.1.0
 )
 

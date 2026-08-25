@@ -10,7 +10,7 @@ In this example:
 - The proof demonstrates membership of leaf `9` (at index 4)
 - The circuit verifies the authentication path against the public root
 
-The [contract implementation](../../../src/lib.rs) stores the verification key supplied during initialization or via `set_verification_key`. The [integration test](../../arkworks.rs) demonstrates off-chain parsing of the proof and verification key, along with successful contract execution.
+The [contract implementation](../../../src/lib.rs) receives the verification key and typed public inputs directly in `verify_proof`. The [integration test](../../arkworks.rs) demonstrates canonical off-chain parsing of the public inputs, proof, and verification key, along with successful contract execution.
 
 ---
 

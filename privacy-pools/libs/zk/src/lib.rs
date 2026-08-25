@@ -155,16 +155,17 @@ impl PublicSignals {
     }
 }
 // Import the groth16_verifier contract for use in tests
-// The contract must be built first: cd ../../../groth16_verifier && make build
+// The contract must be built first:
+// cd ../../../groth16_verifier/contracts/bls12_381_verifier && make build
 #[cfg(test)]
 mod groth16_verifier_wasm {
     soroban_sdk::contractimport!(
-        file = "../../../groth16_verifier/target/wasm32v1-none/release/soroban_groth16_verifier_contract.wasm"
+        file = "../../../groth16_verifier/target/wasm32v1-none/release/bls12_381_verifier.wasm"
     );
 }
 
 // The verification logic below matches the groth16_verifier contract implementation
-// located at ../../groth16_verifier/src/lib.rs
+// located at ../../../groth16_verifier/contracts/bls12_381_verifier/src/lib.rs
 //
 // Note: Since contractimport! only works in contracts or test modules (not libraries),
 // and env.register() is only available in test contexts, this library provides

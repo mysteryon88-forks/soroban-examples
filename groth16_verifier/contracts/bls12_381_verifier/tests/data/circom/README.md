@@ -7,7 +7,7 @@ The computation demonstrates a simple multiplication circuit: `a * b = c`, where
 - `a` and `b` are private inputs
 - `c` is the public output
 
-The [contract implementation](../../../src/lib.rs) stores the verification key supplied during initialization or via `set_verification_key`. The [integration test](../../circom.rs) demonstrates off-chain parsing of the proof and verification key, along with successful contract execution.
+The [contract implementation](../../../src/lib.rs) receives the verification key and typed public inputs directly in `verify_proof`. The [integration test](../../circom.rs) demonstrates canonical off-chain parsing of the public inputs, proof, and verification key, along with successful contract execution.
 
 ---
 

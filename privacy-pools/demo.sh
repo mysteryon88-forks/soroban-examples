@@ -23,13 +23,13 @@ echo "   Funding demo_user account..."
 stellar keys fund demo_user --network $NETWORK 2>&1 | grep -q "funded" && echo "   ✅ Account funded" || echo "⚠️  demo_user may already be funded"
 # Step 1: Deploy groth16_verifier contract first
 echo "📦 Building groth16_verifier contract..."
-cd ../groth16_verifier
+cd ../groth16_verifier/contracts/bls12_381_verifier
 make build || { echo "❌ Error: Failed to build groth16_verifier contract"; exit 1; }
-stellar contract optimize --wasm target/wasm32v1-none/release/soroban_groth16_verifier_contract.wasm --wasm-out target/wasm32v1-none/release/soroban_groth16_verifier_contract.optimized.wasm || { echo "❌ Error: Failed to optimize groth16_verifier WASM"; exit 1; }
-cd ../privacy-pools
+stellar contract optimize --wasm ../../target/wasm32v1-none/release/bls12_381_verifier.wasm --wasm-out ../../target/wasm32v1-none/release/bls12_381_verifier.optimized.wasm || { echo "❌ Error: Failed to optimize groth16_verifier WASM"; exit 1; }
+cd ../../../privacy-pools
 
 echo "🚀 Deploying groth16_verifier contract to $NETWORK..."
-GROTH16_DEPLOY_OUTPUT=$(stellar contract deploy --wasm ../groth16_verifier/target/wasm32v1-none/release/soroban_groth16_verifier_contract.optimized.wasm --source demo_user --network $NETWORK 2>&1)
+GROTH16_DEPLOY_OUTPUT=$(stellar contract deploy --wasm ../groth16_verifier/target/wasm32v1-none/release/bls12_381_verifier.optimized.wasm --source demo_user --network $NETWORK 2>&1)
 if [ $? -ne 0 ]; then
     echo "❌ Error: Groth16 verifier contract deployment failed"
     echo "$GROTH16_DEPLOY_OUTPUT"

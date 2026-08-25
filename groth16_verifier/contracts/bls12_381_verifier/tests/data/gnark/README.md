@@ -9,7 +9,7 @@ The computation demonstrates a polynomial circuit: `x^3 + x + 5 = y`, where:
 
 In this example, `x = 3` and `y = 35` (since `3^3 + 3 + 5 = 27 + 3 + 5 = 35`).
 
-The [contract implementation](../../../src/lib.rs) stores the verification key supplied during initialization or via `set_verification_key`. The [integration test](../../gnark.rs) demonstrates off-chain parsing of the proof and verification key, along with successful contract execution.
+The [contract implementation](../../../src/lib.rs) receives the verification key and typed public inputs directly in `verify_proof`. The [integration test](../../gnark.rs) demonstrates canonical off-chain parsing of the public inputs, proof, and verification key, along with successful contract execution.
 
 Exports proof and verification key to snarkjs-compatible JSON format using [gnark-to-snarkjs](https://github.com/mysteryon88/gnark-to-snarkjs).
 

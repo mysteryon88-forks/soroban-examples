@@ -15,7 +15,7 @@ mod test;
 
 mod groth16_verifier_wasm {
     soroban_sdk::contractimport!(
-        file = "../../groth16_verifier/target/wasm32v1-none/release/soroban_groth16_verifier_contract.wasm"
+        file = "../../groth16_verifier/target/wasm32v1-none/release/bls12_381_verifier.wasm"
     );
 }
 
